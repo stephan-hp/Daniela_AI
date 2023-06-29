@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <title>Daniela AI Simple Chat Bot</title>
+    <!--
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+     -->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <!-- jQuery library -->
+    <script src="{{ url_for('static', filename='jquery-3.6.0.min.js') }}"></script>
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+
+<body class="">
+    <div class="container mt-5">
+        <div class="shadow card">
+            <div id="card-header" class="card-header text-white">
+                Daniela AI
+            </div>
+            <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- Utilizar una notificación de Bootstrap para mostrar el mensaje "Contexto limpiado" -->
+                            <div class="alert alert-success mt-3" id="clear-context" role="alert" style="display:none; position:absolute;">
+                                Contexto limpiado
+                            </div>
+                            <div class="console mt-3 " id="console">
+                                {% for data in history %} {{ data | safe }} {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog" aria-labelledby="feedback-modal-label" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="feedback-modal-label">Proporcionar retroalimentación</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group" id="expected-response-group">
+                                            <label for="expected-response">Teclee la respuesta esperada:</label>
+                                            <input type="text" class="form-control" id="expected-response" name="expected-response">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary" id="btn-submit-feedback">Enviar retroalimentación</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <div class="input-group mb-3 shadow">
+                                <div class="input-group-prepend">
+                                    <button id="clear_button" type="button" class="btn btn-secondary"> <i class="fa fa-trash"></i> </button>
+                                </div>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">>></span>
+                                </div>
+                                <input type="text" class="form-control" id="user_input" placeholder="Introducir un mensaje...">
+                                <input type="hidden" id="question-cache" value="">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" id="send_button">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='custom.js') }}"></script>
+
+</body>
+
+</html>

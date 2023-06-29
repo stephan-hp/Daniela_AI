@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Daniela AI</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #terminal {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            padding: 1em;
+        }
+        
+        #terminal-input {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+        
+        #terminal-input input {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-family: monospace;
+            font-size: 16px;
+            margin: 0;
+            padding: 0;
+            outline: none;
+            width: 100%;
+        }
+        
+        #terminal-output {
+            overflow-y: auto;
+            height: 90%;
+        }
+        
+        #terminal-output p {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #terminal-output p b {
+            color: #00ff00;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="terminal">
+        <div id="terminal-output">
+
+
+        </div>
+        <div id="terminal-input">
+            <span>&gt;&gt; </span>
+            <input type="text" id="user_input" placeholder="Chat with daniela...">
+        </div>
+    </div>
+    <script>
+        var terminalOutput = document.getElementById("terminal-output");
+        var userInput = document.getElementById("user_input");
+        userInput.addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                send();
+            }
+        });
+
+        function send() {
+            var user_input = userInput.value;
+            userInput.value = "";
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    terminalOutput.innerHTML += "<p><b>&gt;&gt;</b> " + user_input + "</p>";
+                    terminalOutput.innerHTML += "<p><b>&gt;</b> " + this.responseText + "</p>";
+                    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                }
+            };
+            xhr.open("GET", "/get?msg=" + user_input, true);
+            xhr.send();
+        }
+    </script>
+</body>
+
+</html>
