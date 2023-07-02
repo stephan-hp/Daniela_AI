@@ -8,7 +8,6 @@ First install Python 3.8 on the computer by following the link https://www.pytho
 
 Then install the python virtual environment with the following line of code from the shell
 ```
-pip install virtualenv
 run
 ```
 
@@ -18,6 +17,5 @@ Primero instalar Python 3.8 en el computador siguiendo el enlace https://www.pyt
 
 Después instalar el entorno virtual de Python con la siguiente línea de código desde el intérprete de comandos
 ```
-pip install virtualenv
 run
 ```
