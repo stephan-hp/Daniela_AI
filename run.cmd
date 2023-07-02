@@ -7,7 +7,7 @@ echo  Daniela AI starting...
 echo  github.com/stephan-hp
 echo.
 cd /d "%~dp0"
-del /s /q .\virtual\pyvenv.cfg
+del /s /q .\virtual\pyvenv.cfg>NUL
 
 echo home = %USERPROFILE%\AppData\Local\Programs\Python\Python38>>.\virtual\pyvenv.cfg
 echo implementation = CPython>>.\virtual\pyvenv.cfg
